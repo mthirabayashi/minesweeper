@@ -1,6 +1,6 @@
 class Cell
 
-  def initialize(bomb, flagged=false, checked=false, fringe_val)
+  def initialize(bomb = false, flagged=false, checked=false, fringe_val = nil)
       @bomb = bomb
       @flagged = flagged
       @checked = checked

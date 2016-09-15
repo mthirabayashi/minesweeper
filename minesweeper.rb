@@ -2,7 +2,7 @@
 class Minesweeper
 
   def initialize()
-    @grid =
+    @field =
   end
 
   def get_pos
@@ -18,12 +18,15 @@ class Minesweeper
   def play_turn
     pos = get_pos
     choice = get_choice
-    cell = grid[pos]
+    cell = field[pos]
     if choice == f
       cell.flagged = !cell.flagged
     else
       cell.checked = true
     end
+  end
+
+  def render_field
 
   end
 
