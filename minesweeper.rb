@@ -1,9 +1,12 @@
 require_relative 'field'
+require 'byebug'
 
 class Minesweeper
+  attr_accessor :field
 
   def initialize(field = Field.new)
     @field = field
+    @check_cell_count = 0
   end
 
   def get_pos
@@ -23,12 +26,13 @@ class Minesweeper
     render_field
     pos = get_pos
     choice = get_choice
-
-    cell = @field.grid[pos]
-    if choice == f
-      cell.flagged = !cell.flagged
+    # byebug
+    cell = @field[pos]
+    if choice == "f"
+      cell.toggle_flag
     else
-      cell.checked = true
+      cell.check_cell
+      @check_cell_count += 1
     end
   end
 
@@ -68,11 +72,16 @@ class Minesweeper
   end
 
   def field_cleared
-
+    if @checked_cell_count == 1
+      @field.place_bombs
+    end
+    false
   end
 
 end #exiting Minesweeper class
 
 game = Minesweeper.new
-game.play
+# game.play
+game.field.place_bombs
+game.render_field
 # game.render_field

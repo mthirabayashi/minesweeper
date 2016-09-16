@@ -10,8 +10,17 @@ class Field
     @grid = grid
   end
 
-  def place_bombs(pos)
-    # randomly assign bombs on grid - pos
+  def place_bombs
+    bombs_placed = 0
+    until bombs_placed == 9
+      pos = [rand(9), rand(9)]
+      x = rand(9)
+      y = rand(9)
+      if !@grid[x][y].checked && !@grid[x][y].bomb
+        @grid[x][y].arm_bomb
+        bombs_placed += 1
+      end
+    end
   end
 
   def calculate_fringe
@@ -32,12 +41,12 @@ class Field
 # @grid[](pos) === @grid([pos])
   def [](pos)
     x,y = pos
-    grid[x][y]
+    @grid[x][y]
   end
 
   def []=(pos, value)
     x,y = pos
-    tile = grid[x][y]
+    tile = @grid[x][y]
     tile.value = value
   end
 
