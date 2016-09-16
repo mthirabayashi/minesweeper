@@ -1,22 +1,23 @@
-class field
+require_relative 'cell'
+
+class Field
 
   def self.field_generate
-    field = Array.new(9) {Array.new(9) Cell.new}
+    Array.new(9) {Array.new(9) { Cell.new } }
   end
 
-  def initialize()
-    @grid = grid
-
+  def initialize(field = self.field_generate)
+    @field = field
   end
 
   def place_bombs(pos)
-    # randomly assign bombs on grid - pos
+    # randomly assign bombs on field - pos
   end
 
   def calculate_fringe
-    @grid.each_index do |x|
+    @field.each_index do |x|
       row.each_index do |y|
-        @grid[x][y].fringe = check_cell_neighbors(x, y)
+        @field[x][y].fringe = check_cell_neighbors(x, y)
       end
     end
   end
