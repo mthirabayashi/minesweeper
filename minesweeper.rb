@@ -29,11 +29,14 @@ class Minesweeper
   end
 
   def render_field
-    @field.each do |row|
-      row.each do |cell|
-        p cell.state
-      end
-      puts
+    # p @field.field
+    @field.field.each do |row|
+
+      # row.each do |cell|
+
+        # p cell.state
+      # end
+      puts row.join(" ")
     end
   end
 

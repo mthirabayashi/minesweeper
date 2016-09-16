@@ -13,4 +13,8 @@ class Cell
     #update cell state based on cell values
   end
 
+  def to_s
+    state
+  end
+
 end #end of Cell class

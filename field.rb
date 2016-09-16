@@ -1,12 +1,12 @@
 require_relative 'cell'
 
 class Field
-
+  attr_reader :field
   def self.field_generate
     Array.new(9) {Array.new(9) { Cell.new } }
   end
 
-  def initialize(field = self.field_generate)
+  def initialize(field = Field.field_generate)
     @field = field
   end
 
