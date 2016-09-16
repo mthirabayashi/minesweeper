@@ -1,23 +1,23 @@
 require_relative 'cell'
 
 class Field
-  attr_reader :field
-  def self.field_generate
+  attr_reader :grid
+  def self.grid_generate
     Array.new(9) {Array.new(9) { Cell.new } }
   end
 
-  def initialize(field = Field.field_generate)
-    @field = field
+  def initialize(grid = Field.grid_generate)
+    @grid = grid
   end
 
   def place_bombs(pos)
-    # randomly assign bombs on field - pos
+    # randomly assign bombs on grid - pos
   end
 
   def calculate_fringe
-    @field.each_index do |x|
+    @grid.each_index do |x|
       row.each_index do |y|
-        @field[x][y].fringe = check_cell_neighbors(x, y)
+        @grid[x][y].fringe = check_cell_neighbors(x, y)
       end
     end
   end
@@ -29,15 +29,16 @@ class Field
   end
 
 
+# @grid[](pos) === @grid([pos])
   def [](pos)
-    pos = x,y
-    field[x][y]
+    x,y = pos
+    grid[x][y]
   end
 
   def []=(pos, value)
-    x, y = pos
-    tile = field[x][y]
+    x,y = pos
+    tile = grid[x][y]
     tile.value = value
   end
 
-end #end of field class
+end #end of Field class
